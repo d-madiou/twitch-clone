@@ -38,7 +38,6 @@ export default function RootLayout({
             forcedTheme="dark"
             storageKey="gamehub-theme"
             >
-              <Logo />
               {children}
             </ThemeProvider>
           </body>

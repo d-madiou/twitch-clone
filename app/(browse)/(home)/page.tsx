@@ -4,8 +4,10 @@ import { UserButton } from "@clerk/nextjs";
 export default function Home() {
   return (
     <div>
-      <h1 className="text-2xl text-white">Dashboard Name</h1>
-      <UserButton afterSignOutUrl="/"/>
+      <h1 className="text-2xl text-white">
+        Home Page
+        </h1>
+      
     </div>
   );
 }
