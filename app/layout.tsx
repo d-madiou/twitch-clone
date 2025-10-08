@@ -1,10 +1,8 @@
-import { ClerkProvider } from "@clerk/nextjs"
+import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Logo } from "./(auth)/_components/logo";
-
 import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = Geist({
@@ -24,24 +22,26 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-     <ClerkProvider appearance={{ baseTheme: dark }}>
-      <html lang="en">
-          <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-          >
-            <ThemeProvider 
+    <ClerkProvider appearance={{ baseTheme: dark }}>
+      <html lang="en" suppressHydrationWarning>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          {/* Move ThemeProvider up to wrap the whole app */}
+          <ThemeProvider
             attribute="class"
             forcedTheme="dark"
             storageKey="gamehub-theme"
-            >
-              {children}
-            </ThemeProvider>
-          </body>
-        </html>
-      </ClerkProvider>
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

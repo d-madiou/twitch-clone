@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Navbar } from './_components/navbar';
-import { Sidebar } from './_components/sidebar';
+import { Sidebar, SidebarSkeleton } from './_components/sidebar';
 import { Container } from './_components/container';
 
 interface BrowseLayoutProps {
@@ -12,7 +12,9 @@ const BrowseLayout: React.FC<BrowseLayoutProps> = ({ children }) => {
         <>
         <Navbar />
         <div className='bg-gray-900 min-h-screen p-4 mt-20'>
-            <Sidebar />
+            <Suspense fallback={<SidebarSkeleton />}>
+                <Sidebar />
+            </Suspense>
             <Container>
               {children}
             </Container>

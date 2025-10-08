@@ -28,7 +28,7 @@ export const Container = ({ children }: ContainerProps) => {
   return (
     <div
       className={cn(
-        "flex-1 transition-all duration-300", // smooth animation
+        "flex-1 transition-all duration-300",
         collapsed ? "ml-[70px]" : "ml-60"
       )}
     >
