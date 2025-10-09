@@ -2,6 +2,7 @@ import { cva, VariantProps } from "class-variance-authority";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { cn } from "@/lib/utils";
 import { LiveBadge } from "./live-badge";
+import { Skeleton } from "./ui/skeleton";
 
 interface UserAvatarProps extends VariantProps<typeof avatarSizes> {
     username: string;
@@ -43,9 +44,18 @@ export const UserAvatar = ({ username, imageUrl, isLive, showBadge, size}: UserA
             <div 
             className="absolute -bttom-3 left-1/2 transform -translate-x-1/2">
                 <LiveBadge />
-
             </div>
           )}
         </div>
+    )
+}
+
+// Let's use skeleton for loading state
+interface UserAvatarSkeletonProps extends VariantProps<typeof avatarSizes> {};
+
+export const UserAvatarSkeleton = ({ size }: UserAvatarSkeletonProps) => {
+    return(
+        <Skeleton 
+        className={cn("rounded-full", avatarSizes({ size }))} />
     )
 }
