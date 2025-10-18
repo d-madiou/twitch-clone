@@ -4,14 +4,19 @@ import { db } from "./db";
 // Let's implement a function for the all the users that I'm following
 
 export const getFollowedUsers = async () =>{
-    
-    
     try{
         const self =  await getSelf();
 
         const followedUsers = db.follow.findMany({
             where: {
                 followerId: self.id,
+                following:{
+                    blocking:{
+                        some:{
+                            blockerId: self.id,
+                        }
+                    }
+                }
             },
             include:{
                 following: true,
