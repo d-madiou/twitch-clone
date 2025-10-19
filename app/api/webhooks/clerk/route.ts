@@ -21,6 +21,11 @@ export async function POST(req: NextRequest) {
                 externalId: id,
                 username: username || `user_${id.slice(5, 12)}`,
                 imageUrl: image_url,
+                stream: {
+                    create: {
+                        name: `${username}'s stream`
+                    }
+                }
             }
         });
     }
